@@ -18,9 +18,6 @@ public class Java8DefaultInterfaceTest {
 		Supplier<String> producer = () -> "Hello World";
 		Runnable task = () -> { System.out.println("I am a runnable task");  };
 		
-		
-
-
 		int oddSum = Arrays.asList("1","2","3","4","5").stream()
                                         .map(n -> Integer.valueOf(n))
                                         .filter(n -> n % 2 != 0)

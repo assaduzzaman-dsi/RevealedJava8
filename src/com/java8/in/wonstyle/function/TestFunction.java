@@ -24,8 +24,11 @@ public class TestFunction {
 	
 		System.out.println("More compressed form::");
 
-		Function<String, Integer> sortForm = s -> Integer.valueOf(s);
+		List<Integer> numbersSortLamda = Function.map(Integer::valueOf, digits);
 		
-		System.out.println(sortForm);
+		System.out.println(numbersSortLamda);
+		
+		
+	
 	}
 }

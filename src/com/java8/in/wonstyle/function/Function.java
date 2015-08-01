@@ -21,5 +21,4 @@ interface Function<T, R> {
 		}
 		return destiny;
 	}
-
 }
