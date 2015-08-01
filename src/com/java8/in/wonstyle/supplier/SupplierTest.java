@@ -1,5 +1,6 @@
 package com.java8.in.wonstyle.supplier;
 
+
 public class SupplierTest {
 
 	public static void main(String[] args) {
@@ -22,6 +23,9 @@ public class SupplierTest {
 		
 		int valueLamda = Supplier.calculate(()->Supplier.generateX(),()->Supplier.generateY());
 
+		
+		Supplier<Integer> producer = () -> Supplier.generateX();
+		
 		System.out.println(valueLamda);
 	}
 
