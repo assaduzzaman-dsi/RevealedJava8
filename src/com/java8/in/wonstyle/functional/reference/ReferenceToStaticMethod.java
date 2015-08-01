@@ -14,9 +14,9 @@ public class ReferenceToStaticMethod {
         // TODO code application logic here
         List<Integer>  numbers = Arrays.asList(1,2,3,4,5,6,7,8,9,10,11,12,13,15,16);
         List<Integer> primeNumbers = ReferenceToStaticMethod.findPrimeNumbers(ReferenceToStaticMethod::isPrime,numbers);
- 
+        List primeNumbersLamdas = ReferenceToStaticMethod.findPrimeNumbers(a -> ReferenceToStaticMethod.isPrime(a),numbers);
         
-        System.out.println("Prime Numbers are "+primeNumbers);
+        System.out.println("Prime Numbers are "+primeNumbers + " lamda version " + primeNumbers);
     }
  
     public static boolean isPrime(Integer number) {
