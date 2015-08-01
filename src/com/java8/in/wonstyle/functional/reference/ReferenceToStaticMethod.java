@@ -1,4 +1,4 @@
-package com.java8.in.wonstyle.functional.staticreference;
+package com.java8.in.wonstyle.functional.reference;
 
 import java.util.ArrayList;
 import java.util.Arrays;
