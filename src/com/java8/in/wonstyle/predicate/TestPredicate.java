@@ -21,5 +21,15 @@ public class TestPredicate {
 		System.out.println(onlyOddsLamda);
 		
 		
+		List<Integer> onlyOddsMyLamda = MyFilter.filter( n -> n % 2 != 0, numbers);
+		
+		System.out.println(onlyOddsMyLamda);
+		
+		System.out.println("More compressed form::");
+		
+		Predicate<Integer> isOdd = n -> n % 2 == 0;
+		
+		System.out.println(isOdd);
+		
 	}
 }
