@@ -44,6 +44,8 @@ public class ReferenceToInstanceMethodAOPT {
  
             List allAges = ReferenceToInstanceMethodAOPT.listAllAges(persons, Person::getAge);
             System.out.println("Printing out all ages \n"+allAges);
+            List allAgesLamdaVersion = ReferenceToInstanceMethodAOPT.listAllAges(persons, x -> x.getAge());
+            System.out.println("Printing out all ages lamda version\n"+allAgesLamdaVersion);
     }
  
  
