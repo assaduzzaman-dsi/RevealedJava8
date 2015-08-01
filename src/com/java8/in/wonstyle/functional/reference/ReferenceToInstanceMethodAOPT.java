@@ -47,9 +47,9 @@ public class ReferenceToInstanceMethodAOPT {
     }
  
  
-    private static List listAllAges(List person, Function<Person, Integer> f){
+    private static List listAllAges(List<Person> person, Function<Person, Integer> f) {
         List result = new ArrayList();
-        person.forEach(x -> result.add(f.apply((Person) x)));
+        person.forEach(x -> result.add(f.apply(x)));
         return result;
     }
 }

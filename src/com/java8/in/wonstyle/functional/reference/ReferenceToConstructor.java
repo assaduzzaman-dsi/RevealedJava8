@@ -20,9 +20,9 @@ public class ReferenceToConstructor {
          System.out.println("Squar root of numbers lamda version = " + squaredNumbersLamdaVersion);
     }
  
-    private static List findSquareRoot(List list, Function<Double,Double> f){
+    private static List findSquareRoot(List<Double> list, Function<Double,Double> f){
         List result = new ArrayList<>();
-        list.forEach(x -> result.add(f.apply(Math.sqrt((double) x))));
+        list.forEach(x -> result.add(f.apply(Math.sqrt(x))));
         return result;
     }
 }
