@@ -12,6 +12,8 @@ import org.codehaus.jackson.type.TypeReference;
 
 public class JsonFileMapExample {
     public static void main(String[] args) {
+    	System.out.println("available processor::::::::::::::::::::::::" + Runtime.getRuntime().availableProcessors());
+		System.setProperty("java.util.concurrent.ForkJoinPool.common.parallelism", "20");
 
 	try {
 
