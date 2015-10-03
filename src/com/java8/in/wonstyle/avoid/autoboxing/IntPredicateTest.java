@@ -20,6 +20,17 @@ public class IntPredicateTest {
 //		r.run();
 		
 		new Thread(r).start();
+		
+		
+		show(new IntPredicateTest());
+	}
+	
+	public static void show(IntPredicateTest a) {
+		int number = 8;
+		Runnable r = () -> (System.out.println(number));
+		r.run();
+		
+//		number = 9; //Compile ERROR
 	}
 
 }
