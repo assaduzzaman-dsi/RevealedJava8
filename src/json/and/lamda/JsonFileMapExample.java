@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Stream;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
@@ -13,7 +12,9 @@ import org.codehaus.jackson.type.TypeReference;
 public class JsonFileMapExample {
     public static void main(String[] args) {
     	System.out.println("available processor::::::::::::::::::::::::" + Runtime.getRuntime().availableProcessors());
-		System.setProperty("java.util.concurrent.ForkJoinPool.common.parallelism", "20");
+		System.setProperty("java.util.concurrent.ForkJoinPool.common.parallelism", "4");
+		
+		System.out.println("00................" + System.getProperty("java.util.concurrent.ForkJoinPool.common.parallelism"));
 
 	try {
 
@@ -35,7 +36,7 @@ public class JsonFileMapExample {
 	System.out.println("time1" + (System.currentTimeMillis() - time));
 	time = System.nanoTime();
 	setOptionData(page);
-	System.out.println("return ------------------------------::>>67K:::" + (System.nanoTime() - time));
+	System.out.println("return ------------------------------::>>normal" + (System.nanoTime() - time));
 	
 	System.out.println(page);
 	
@@ -75,16 +76,7 @@ public class JsonFileMapExample {
 	}
 
 	private  static void setOptionReal(Map<String,Object> page) {
-//		List<Map<String,Object>> groups = (List)page.get("groups");
-		//filter(x -> x.containsKey("fields")).map(x -> x).forEach(JsonFileMapExample::find)
-		
-//		List fields = groups.parallelStream().filter(x -> x.containsKey("fields")).collect(Collectors.toList());
-//		groups.parallelStream().filter(x -> x.containsKey("fields")).flatMap(ts -> Stream.of(ts)).forEach(JsonFileMapExample::find);
-//		groups.parallelStream().filter(x -> x.containsKey("fields")).map(x -> x).forEach(JsonFileMapExample::find);
-		
-		((List<Map<String,Object>>)page.get("groups")).parallelStream().filter(x -> x.containsKey("fields")).map(x -> x).forEach(JsonFileMapExample::find);
-		
-		
+		((List<Map<String,Object>>)page.get("groups")).parallelStream().filter(x -> x.containsKey("fields")).forEach(JsonFileMapExample::find);
 	}	
 	
 	
