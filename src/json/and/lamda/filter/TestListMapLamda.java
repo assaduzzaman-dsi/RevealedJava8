@@ -72,6 +72,8 @@ public class TestListMapLamda {
 		System.out.println("is present::" + optional.isPresent() + " value " );
 		
 		test();
+		
+		testMethodReference();
 	}
 	
 	
@@ -81,10 +83,28 @@ public class TestListMapLamda {
 		System.out.println("in testXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
 
 		pages.stream().filter(page -> null != pageIdWithPageInstanceId.get(page.get("PageID"))).forEach(page ->{
+			page.put("UserInstanceID", 1111);
     		System.out.println("page::" + page);
     	});		
 
-    	System.out.println("in testXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+    	System.out.println("in testXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" + pages);
+	}
+	
+	public static void testMethodReference() {
+		
+		TestListMapLamda tt = new TestListMapLamda();
+		
+		pages.stream().filter(page -> null != pageIdWithPageInstanceId.get(page.get("PageID"))).forEach( tt::execute);		
+
+		System.out.println("in methodrefffffffffffffffffffffffffffffffffffffffff" + pages);
+		
+	}
+	
+	public void execute(Map<String,Object> page) {
+		
+		System.out.println("functional interface with instance method::");
+		page.put("UserInstanceID", 1111);
+		System.out.println("hashmap::" + page);
 	}
 	
 	
