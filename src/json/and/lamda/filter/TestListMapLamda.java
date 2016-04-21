@@ -102,7 +102,7 @@ public class TestListMapLamda {
 	
 	public void execute(Map<String,Object> page) {
 		
-		System.out.println("functional interface with instance method::");
+		System.out.println("this this interface with instance method::");
 		page.put("UserInstanceID", 1111);
 		System.out.println("hashmap::" + page);
 	}
