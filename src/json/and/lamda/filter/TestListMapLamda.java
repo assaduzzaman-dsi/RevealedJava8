@@ -34,6 +34,8 @@ public class TestListMapLamda {
 		
 		Map<String,Object> page1 = new HashMap<>();
 		page1.put("PageID", "PID1001");
+		page1.put("SecondNullValue", null);
+
 		Map<String,Object>  page2 = new HashMap<>();
 		page2.put("PageID", "PID1208");
 		Map<String,Object>  page3 = new HashMap<>();
@@ -42,6 +44,7 @@ public class TestListMapLamda {
 		page4.put("PageID", "PID1214");
 		Map<String,Object>  page5 = new HashMap<>();
 		page5.put("PageID", "PID15555");
+		page5.put("NullValue", null);
 		
 		pages.add(page1);
 		pages.add(page2);
@@ -74,6 +77,7 @@ public class TestListMapLamda {
 		test();
 		testMethodReference();
 		testMethodReference2();
+		 sanitizationTest();	
 	}
 	
 	
@@ -104,6 +108,17 @@ public class TestListMapLamda {
 	public void execute(Map<String,Object> page, Integer userInstanceId) {
 		page.put("UserInstanceID", userInstanceId);
 	}
+	
+	public static void sanitizationTest() {
+		System.out.println("pages before::" + pages);
+		pages.stream().filter(page -> null != pageIdWithPageInstanceId.get(page.get("PageID")))
+			.forEach( page -> page.entrySet().removeIf( entry -> null == entry.getValue()));
+		
+		System.out.println("pages after::" + pages);
+		
+	}
+	
+	
 	
 	
 }
