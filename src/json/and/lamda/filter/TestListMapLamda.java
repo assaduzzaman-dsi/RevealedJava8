@@ -94,12 +94,9 @@ public class TestListMapLamda {
 		pages.stream().filter(page -> null != pageIdWithPageInstanceId.get(page.get("PageID"))).forEach( tt::execute);		
 	}
 	public static void testMethodReference2() {
-		
 		TestListMapLamda tt = new TestListMapLamda();
 		Integer userInstanceId = 22;
-		pages.stream().filter(page -> null != pageIdWithPageInstanceId.get(page.get("PageID"))).forEach( page -> {
-			tt.execute(page, userInstanceId);
-		});		
+		pages.stream().filter(page -> pageIdWithPageInstanceId.containsKey(page.get("PageID"))).forEach( page -> tt.execute(page, userInstanceId));
 	}
 	
 	public void execute(Map<String,Object> page) {
