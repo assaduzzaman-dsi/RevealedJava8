@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class TestListMapLamda {
 	static List list = new ArrayList<>();
@@ -77,7 +78,8 @@ public class TestListMapLamda {
 		test();
 		testMethodReference();
 		testMethodReference2();
-		 sanitizationTest();	
+//		 sanitizationTest();
+		 removeFromList();
 	}
 	
 	
@@ -112,6 +114,14 @@ public class TestListMapLamda {
 			.forEach( page -> page.entrySet().removeIf( entry -> null == entry.getValue()));
 		
 		System.out.println("pages after::" + pages);
+		
+	}
+	
+	public static void removeFromList() {
+		System.out.println("before::" + pages);
+		pages = pages.stream().filter(page -> null != pageIdWithPageInstanceId.get(page.get("PageID"))).collect(Collectors.toList());
+		System.out.println("after::" + pages);
+		
 		
 	}
 	
