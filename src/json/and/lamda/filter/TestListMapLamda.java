@@ -33,9 +33,24 @@ public class TestListMapLamda {
 		list.add(userRole3);
 		list.add(userRole4);
 		
+		List<Map<String,Object>> group = new ArrayList<>();
+		Map<String,Object> groupMap = new HashMap<>();
+		groupMap.put("G1F1", null);
+		groupMap.put("G1F2", "F2value");
+		groupMap.put("G1F3", "F3value");
+		groupMap.put("G1F4", null);
+		group.add(groupMap);
+
+		Map<String,Object> groupMap2 = new HashMap<>();
+		groupMap2.put("G2F1", null);
+		groupMap2.put("G2F2", "F2value");
+		groupMap2.put("G2F3", "F3value");
+		groupMap2.put("G2F4", null);
+		group.add(groupMap2);
+		
 		Map<String,Object> page1 = new HashMap<>();
 		page1.put("PageID", "PID1001");
-		page1.put("SecondNullValue", null);
+		page1.put("Groups", group);
 
 		Map<String,Object>  page2 = new HashMap<>();
 		page2.put("PageID", "PID1208");
@@ -45,7 +60,7 @@ public class TestListMapLamda {
 		page4.put("PageID", "PID1214");
 		Map<String,Object>  page5 = new HashMap<>();
 		page5.put("PageID", "PID15555");
-		page5.put("NullValue", null);
+		page5.put("Groups", group);
 		
 		pages.add(page1);
 		pages.add(page2);
@@ -75,11 +90,12 @@ public class TestListMapLamda {
 		
 		System.out.println("is present::" + optional.isPresent() + " value " );
 		
-		test();
-		testMethodReference();
-		testMethodReference2();
+//		test();
+//		testMethodReference();
+//		testMethodReference2();
 //		 sanitizationTest();
-		 removeFromList();
+//		 removeFromList();
+		 nestedFilter();
 	}
 	
 	
@@ -98,7 +114,9 @@ public class TestListMapLamda {
 	public static void testMethodReference2() {
 		TestListMapLamda tt = new TestListMapLamda();
 		Integer userInstanceId = 22;
+		System.out.println("before"  +pages);
 		pages.stream().filter(page -> pageIdWithPageInstanceId.containsKey(page.get("PageID"))).forEach( page -> tt.execute(page, userInstanceId));
+		System.out.println("after"  +pages);
 	}
 	
 	public void execute(Map<String,Object> page) {
@@ -121,8 +139,21 @@ public class TestListMapLamda {
 		System.out.println("before::" + pages);
 		pages = pages.stream().filter(page -> null != pageIdWithPageInstanceId.get(page.get("PageID"))).collect(Collectors.toList());
 		System.out.println("after::" + pages);
+	}
+	
+	public static void nestedFilter() {
+		System.out.println("before::" + pages);
+		pages = pages.stream().filter(page -> 
+		pageIdWithPageInstanceId.containsKey(page.get("PageID")) && page.containsKey("Groups")
+		).collect(Collectors.toList());
+		System.out.println("after::" + pages);
 		
+		pages.stream().filter(page -> page.containsKey("Groups"))
+	     .map(page -> (List) page.get("Groups"))
+	     .flatMap(x -> x.stream())
+	     .forEach(group -> ((Map<String,Object>)group).entrySet().removeIf(entry -> null == entry.getValue()));
 		
+		System.out.println("after sanitize::" + pages);
 	}
 	
 	
